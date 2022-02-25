@@ -1,0 +1,33 @@
+version: "3.9"
+
+networks:
+  backend:
+    ipam:
+      config:
+        - subnet: 172.10.0.0/24
+
+services:
+  nginx:
+    build: ./appnginx
+    ports: 
+      - 80:80
+    networks:
+      - backend
+    depends_on:
+      - app1
+      - app2
+    
+  app1:
+    build: ./appfastapi
+    environment:
+      - PORT=9000
+    networks:
+      - backend
+     
+  
+  app2:
+    build: ./appfastapi
+    environment: 
+      - PORT=9001
+    networks:
+      - backend
