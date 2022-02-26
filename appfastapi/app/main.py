@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 import uvicorn
+import socket
 import os
 
 app = FastAPI()
 
 @app.get("/status", status_code=200)
 def healthcheck():
-    return 'http status code 200'
+    return 'http status code 200 ta el'
 
 # @app.get("/")
 # def homescore():
