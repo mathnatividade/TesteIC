@@ -9,6 +9,7 @@ networks:
 services:
   nginx:
     build: ./appnginx
+    container_name: nginxapp
     ports: 
       - 80:80
     networks:
@@ -19,6 +20,7 @@ services:
     
   app1:
     build: ./appfastapi
+    container_name: app1
     environment:
       - PORT=9000
     networks:
@@ -27,6 +29,7 @@ services:
   
   app2:
     build: ./appfastapi
+    container_name: app2
     environment: 
       - PORT=9001
     networks:
