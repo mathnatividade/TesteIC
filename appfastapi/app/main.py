@@ -1,10 +1,19 @@
 from fastapi import FastAPI, Request
+from typing import Optional
 import uvicorn
 import socket
 import os
 import requests
 
 app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: Optional[str] = None):
+    return {"item_id": item_id, "q": q}
 
 @app.get("/status", status_code=200)
 def healthcheck():
