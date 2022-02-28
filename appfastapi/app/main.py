@@ -8,8 +8,8 @@ app = FastAPI()
 
 @app.get("/status", status_code=200)
 def healthcheck():
-    appcoderesponse = requests.get("/status")
-    return {"Http code:",appcoderesponse.status_code}
+#    appcoderesponse = requests.get("/status")
+    return {"Http code:", app.status_code}
 
 @app.get("/clientip")
 def client_data(request: Request):
