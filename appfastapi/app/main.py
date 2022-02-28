@@ -2,6 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 import socket
 import os
+import requests
 
 app = FastAPI()
 
