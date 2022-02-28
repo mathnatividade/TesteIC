@@ -17,7 +17,10 @@ case $1 in
          ;;
    "del") echo "Parando e removendo stack de aplicações no docker"
            sudo docker-compose down
-           #Comando extra, para e remove os containers no docker.
+           sudo docker rmi testeic_app1
+           sudo docker rmi testeic_app2
+           sudo docker rmi testeic_nginx
+           #Comando extra, para e remove os containers e imagens criadas no docker.
          ;;
    *) echo "Opção inválida!"
       exit 1
