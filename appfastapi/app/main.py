@@ -10,11 +10,10 @@ app = FastAPI()
 def healthcheck():
     return 'http status code 200 ta el'
 
-@app.get("/client-data")
+@app.get("/clientip")
 def client_data(request: Request):
     client_host = request.client.host
     client_port = request.client.port
-    
     return {"client_host": client_host, "client_port": client_port}
 
 # @app.get("/")
