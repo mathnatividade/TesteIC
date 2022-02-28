@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 import uvicorn
 import socket
 import os
@@ -9,6 +9,13 @@ app = FastAPI()
 @app.get("/status", status_code=200)
 def healthcheck():
     return 'http status code 200 ta el'
+
+@app.get("/client-data")
+def client_data(request: Request):
+    client_host = request.client.host
+    client_port = request.client.port
+    
+    return {"client_host": client_host, "client_port": client_port}
 
 # @app.get("/")
 # def homescore():
