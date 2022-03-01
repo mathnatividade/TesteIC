@@ -10,10 +10,10 @@ app = FastAPI()
 #, status_code=200
 @app.get("/teste2")
 def read_root():
-    httpcode = requests.get("/teste2")
-    responsehttp = httpcode.status_code
-    iphost = socket.gethostbyname(socket.gethostname())
-    return {"System IP": iphost, "HTTP code": responsehttp}
+    #httpcode = requests.get("/teste2")
+    #responsehttp = httpcode.status_code
+    #iphost = socket.gethostbyname(socket.gethostname())
+    return {"System IP": iphost, "HTTP code": "200"}
 
 
 @app.get("/teste")
