@@ -19,7 +19,7 @@ services:
       - app1
       - app2
     volumes:
-      - ./certs:/certs
+      - ./appnginx/certs:/certs
     
   app1:
     build: ./appfastapi

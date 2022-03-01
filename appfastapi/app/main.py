@@ -6,11 +6,10 @@ import os
 app = FastAPI()
 
 @app.get("/status", status_code=200)
-def status(response: Response):
+def statusapp(response: Response):
     hostname = socket.gethostname()
     ip = socket.gethostbyname(socket.gethostname())
-    #response.status_code = status.HTTP
-    print(status)
+    response.status_code = status.HTTP_404_NOT_FOUND
     return {"name": hostname, "ip": ip}
 
 if __name__ == "__main__":
