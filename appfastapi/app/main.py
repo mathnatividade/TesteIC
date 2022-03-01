@@ -7,10 +7,17 @@ import requests
 
 app = FastAPI()
 
+@app.get("/teste2", status_code=200)
+def healthcheck():
+    httpcode = requests.get('http://localhost/teste2')
+    iphost = socket.gethostbyname(socket.gethostname())
+    return {"System IP": iphost, "HTTP code": httpcode}
+
+
 @app.get("/teste")
 def read_root():
     iphost = socket.gethostbyname(socket.gethostname())
-    return {"Ip do sistema:": iphost}
+    return {"Ip do sistema": iphost}
 
 @app.get("/")
 def read_root():
