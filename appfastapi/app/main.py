@@ -9,7 +9,7 @@ app = FastAPI()
 
 @app.get("/teste")
 def read_root():
-    return {print(socket.gethostbyname(socket.gethostname()))}
+    print(socket.gethostbyname(socket.gethostname()))
 
 @app.get("/")
 def read_root():
