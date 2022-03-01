@@ -11,7 +11,7 @@ app = FastAPI()
 def healthcheck():
     httpcode = requests.get('http://localhost/teste2')
     iphost = socket.gethostbyname(socket.gethostname())
-    return {"System IP": iphost, "HTTP code": httpcode}
+    return {"System IP": iphost, "HTTP code": httpcode.status_code}
 
 
 @app.get("/teste")
