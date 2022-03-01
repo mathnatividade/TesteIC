@@ -9,7 +9,8 @@ app = FastAPI()
 
 @app.get("/teste")
 def read_root():
-    print(socket.gethostbyname(socket.gethostname()))
+    iphost = socket.gethostbyname(socket.gethostname())
+    return {"Ip do sistema:": iphost}
 
 @app.get("/")
 def read_root():
