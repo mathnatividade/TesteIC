@@ -7,8 +7,9 @@ import requests
 
 app = FastAPI()
 
-@app.get("/teste2", status_code=200)
-def healthcheck():
+#, status_code=200
+@app.get("/teste2")
+def read_root():
     httpcode = requests.get("/teste2")
     responsehttp = httpcode.status_code
     iphost = socket.gethostbyname(socket.gethostname())
