@@ -3,14 +3,19 @@ from datetime import datetime
 import uvicorn
 import socket
 import os
+import pytz
 
 app = FastAPI()
 
+datetime.timezone(-3)
+
 @app.get("/status", status_code=200)
 def healthcheck():
-    iphost = socket.gethostbyname(socket.gethostname())
     hname = socket.gethostname()
-    acesstime = datetime.today().strftime('%A, %B %d, %Y %H:%M:%S')
+    iphost = socket.gethostbyname(socket.gethostname())
+    IST = pytz.timezone('America/Sao_Paulo') 
+    datetime_ist = datetime.now(IST) 
+    acesstime = datetime_ist.strftime('%A, %B %d, %Y %H:%M:%S')
     return {"Name":hname, "System IP":iphost, "HTTP status code":200, "Acess time":acesstime}
 
 @app.get("/")
