@@ -7,6 +7,10 @@ import requests
 
 app = FastAPI()
 
+@app.get("/teste")
+def read_root():
+    return {print(socket.gethostbyname(socket.gethostname()))}
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -17,8 +21,10 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 @app.get("/status", status_code=200)
 def healthcheck():
+    return "http status code 200"
 #    appcoderesponse = requests.get("/status")
-    return {"Http code:", app.status_code}
+#   return {"Http code:", status_code}
+
 
 @app.get("/clientip")
 def client_data(request: Request):
