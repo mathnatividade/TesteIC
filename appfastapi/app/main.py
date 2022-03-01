@@ -8,17 +8,15 @@ import pytz
 app = FastAPI()
 
 @app.get("/status", status_code=200)
-def healthcheck():
-    hname = socket.gethostname()
-    iphost = socket.gethostbyname(socket.gethostname())
+def status(): 
+    hostname = socket.gethostname()
+    ip = socket.gethostbyname(socket.gethostname())
     IST = pytz.timezone('America/Sao_Paulo') 
     datetime_ist = datetime.now(IST) 
     acesstime = datetime_ist.strftime('%A, %B %d, %Y %H:%M:%S')
-    return {"Name":hname, "System IP":iphost, "HTTP status code":200, "Acess time":acesstime}
+    return {"name": hostname, "ip": ip}
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+    #"code": 200, "time":acesstime
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.getenv('PORT')))
