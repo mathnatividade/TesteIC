@@ -12,7 +12,7 @@ app = FastAPI()
 @app.get("/teste2", status_code=200)
 def healthcheck():
     iphost = socket.gethostbyname(socket.gethostname())
-    hname = platform.node()
+    hname = socket.gethostname()
     return {"Name":hname, "System IP":iphost, "HTTP status code":200}
 #
 @app.get("/teste3")
