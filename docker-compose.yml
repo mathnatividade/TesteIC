@@ -18,7 +18,7 @@ services:
       - app1
       - app2
     volumes: 
-      --/data/certs-data/:/data/letsencrypt/
+      - /data/certs-data/:/data/letsencrypt/
     
   app1:
     build: ./appfastapi
