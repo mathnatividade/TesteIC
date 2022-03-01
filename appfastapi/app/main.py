@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from datetime import datetime
 import uvicorn
 import socket
 import os
@@ -9,7 +10,8 @@ app = FastAPI()
 def healthcheck():
     iphost = socket.gethostbyname(socket.gethostname())
     hname = socket.gethostname()
-    return {"Name":hname, "System IP":iphost, "HTTP status code":200}
+    acesstime = datetime.today().strftime('%A, %B %d, %Y %H:%M:%S')
+    return {"Name":hname, "System IP":iphost, "HTTP status code":200, "Acess time":acesstime}
 
 @app.get("/")
 def read_root():
