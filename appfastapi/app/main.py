@@ -3,6 +3,7 @@ from typing import Optional
 import uvicorn
 import socket
 import os
+import platform
 import requests
 
 app = FastAPI()
@@ -11,7 +12,7 @@ app = FastAPI()
 @app.get("/teste2", status_code=200)
 def healthcheck():
     iphost = socket.gethostbyname(socket.gethostname())
-    hname = os.uname()
+    hname = platform.node()
     return {"Name":hname, "System IP":iphost, "HTTP status code":200}
 #
 @app.get("/teste3")
