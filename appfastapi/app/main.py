@@ -7,8 +7,6 @@ import pytz
 
 app = FastAPI()
 
-datetime.timezone(-3)
-
 @app.get("/status", status_code=200)
 def healthcheck():
     hname = socket.gethostname()
