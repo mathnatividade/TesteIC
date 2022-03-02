@@ -9,9 +9,9 @@ app = FastAPI()
 
 @app.get("/status", status_code=200)
 async def statusapp(response: Response):
-    timeout = randint(1, 5)
-    await asyncio.sleep(timeout)
-    if timeout >= 3: 
+    timeout = randint(30, 50)
+    await asyncio.sleep(timeout/1000)
+    if timeout > 42: 
         response.status_code = status.HTTP_404_NOT_FOUND    
         return timeout
     hostname = socket.gethostname()

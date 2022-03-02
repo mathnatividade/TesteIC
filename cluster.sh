@@ -22,6 +22,11 @@ case $1 in
            sudo docker rmi testeic_nginx
            #Comando extra, para e remove os containers e imagens criadas no docker.
          ;;
+   "restart") echo "Parando e removendo stack de aplicações no docker"
+           sudo docker-compose down
+           sudo docker-compose build
+           sudo docker-compose up -d
+           ;;
    *) echo "Opção inválida!"
       exit 1
       ;;
