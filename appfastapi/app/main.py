@@ -2,15 +2,17 @@ from fastapi import FastAPI, Response, status
 import uvicorn
 import socket
 import os
+import asyncio
 from random import randint
 
 app = FastAPI()
 
 @app.get("/status", status_code=200)
-def statusapp(response: Response):
-    timeout = randint(30, 50)
-    if timeout > 30: 
-        response.status_code = status.HTTP_404_NOT_FOUND
+async def statusapp(response: Response):
+    timeout = randint(1, 5)
+    await asyncio.sleep(timeout)
+    if timeout >= 3: 
+        response.status_code = status.HTTP_404_NOT_FOUND    
         return timeout
     hostname = socket.gethostname()
     ip = socket.gethostbyname(socket.gethostname())
