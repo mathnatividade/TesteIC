@@ -3,7 +3,7 @@
 #Rejeita pacotes danificados
 #iptables -A FORWARD -m unclean -j DROP
 
-#Libera acesso as portas 22 e 80 por todas as redes
+#Libera acesso as portas 22, 80 e 443 por todas as redes
 iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT
 iptables -A INPUT -p tcp --destination-port 80 -j ACCEPT
 iptables -A INPUT -p tcp --destination-port 443 -j ACCEPT
