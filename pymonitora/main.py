@@ -1,33 +1,30 @@
-from requests import get
-from urllib import request
+import csv
+from time import time
+import requests
+requests.packages.urllib3.disable_warnings()
 
-BASE_URL = 'https://192.168.79.130/' 
+BASE_URL = "http://192.168.79.130/" 
+csvfile = open('./monitor.csv', 'a', newline='')
+writer = csv.writer(csvfile)
 
-#Testa acesso ao container nginx
-try :
-    nginx = request.urlopen(BASE_URL)
-except request.URLError:
-    print('Nginx server is down\n')
-else  :
-    responsenginx = get(BASE_URL)
-    print("Nginx server is up.", "Http code:", responsenginx.status_code,'\n')
+def app_monitor(app_name, url):
+    try:
+        start = time()
+        app = requests.get(url, verify=False)
+    except requests.HTTPError as error:
+        print(app_name, error)
+    else:
+        status = 'DOWN'
+        if app.status_code == 200:
+            status = 'UP'
+        #Ordem de leitura: DATA_REGISTRO, APLICAÇÃO, STATUS, LATÊNCIA, DATA_COLETA
+        writer.writerow([start, app_name, status, app.elapsed.total_seconds(), time()]) 
 
 #Testa acesso ao container app1
-try :
-    app1 = request.urlopen(f'{BASE_URL}/app1/status')
-except request.URLError:
-    print('App1 is down\n')
-else  :
-    responseapp1 = get(f'{BASE_URL}/app1/status') 
-    print("App1 is up.","Http code:", responseapp1.status_code,'\n')
-#    elif responseapp1.status_code==502 :
-#        print ("App1 is down, but nginx server is up.","Http code:", responseapp1.status_code,'\n')
+app_monitor('app1', f'{BASE_URL}/app1/status')
 
 #Testa acesso ao container app2
-try :
-    app2 = request.urlopen(f'{BASE_URL}/app2/status')
-except request.URLError:
-    print('App2 is down')
-else  :
-    responseapp2 = get(f'{BASE_URL}/app2/status')
-    print("App2 is up.","Http code:", responseapp2.status_code)
+app_monitor('app2', f'{BASE_URL}/app2/status')
+
+#Testa acesso ao container nginx
+app_monitor('nginx', BASE_URL)
