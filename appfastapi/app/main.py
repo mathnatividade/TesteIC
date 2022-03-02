@@ -13,10 +13,10 @@ async def statusapp(response: Response):
     await asyncio.sleep(timeout/1000)
     if timeout > 42: 
         response.status_code = status.HTTP_404_NOT_FOUND    
-        return timeout
+        return 'not found'
     hostname = socket.gethostname()
     ip = socket.gethostbyname(socket.gethostname())
-    return {"name": hostname, "ip": ip, "timeout" : timeout}
+    return {"name": hostname, "ip": ip}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.getenv('PORT')))
