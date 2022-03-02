@@ -2,15 +2,19 @@ from fastapi import FastAPI, Response, status
 import uvicorn
 import socket
 import os
+from random import randint
 
 app = FastAPI()
 
 @app.get("/status", status_code=200)
 def statusapp(response: Response):
+    timeout = randint(30, 50)
+    if timeout > 30: 
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return timeout
     hostname = socket.gethostname()
     ip = socket.gethostbyname(socket.gethostname())
-    response.status_code = status.HTTP_404_NOT_FOUND
-    return {"name": hostname, "ip": ip}
+    return {"name": hostname, "ip": ip, "timeout" : timeout}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.getenv('PORT')))
