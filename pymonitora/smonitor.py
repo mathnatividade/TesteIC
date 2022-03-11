@@ -3,7 +3,7 @@ from time import time
 import requests
 requests.packages.urllib3.disable_warnings()
 
-BASE_URL = "http://192.168.79.130/" 
+BASE_URL = "http://serverdocker/" 
 csvfile = open('./monitor.csv', 'a', newline='')
 writer = csv.writer(csvfile)
 
