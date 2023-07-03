@@ -1,5 +1,7 @@
 # Teste IC
 
+[<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/matheusnatividade/)
+
 ## Objetivo
 
 O objetivo é mostrar os conhecimentos sobre redes tcp/ip, sistemas operacionais linux, containers, balanceadores, automação de tarefas, criação de scripts e programação.
